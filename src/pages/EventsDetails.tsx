@@ -8,9 +8,12 @@ import { DataProps } from "../interface";
 import { RouterPath } from "../router/RouterPath";
 import ImageComponent from "../components/ImageComponent";
 import Box from "@mui/material/Box";
+import { mapToSlideShowImages } from "../utils";
+import { useSlideShow } from "../context/SlideShowContext";
 
 const EventsDetails = () => {
     const { eventsDetails, events } = useProvider();
+    const { setSlideShowImage, setStartIndex } = useSlideShow();
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -86,9 +89,12 @@ const EventsDetails = () => {
 
     const handleSlideShow = useCallback(
         (index: number) => {
-            navigate(`${RouterPath.slideShow}/${eventsId}/${index}`);
+            const result = mapToSlideShowImages(eventsData ?? [], index)
+            setSlideShowImage(result?.imageList);
+            setStartIndex(result?.index);
+            navigate(RouterPath.slideShow);
         },
-        [navigate, eventsId]
+        [setSlideShowImage, eventsData, setStartIndex, navigate]
     );
 
     return (

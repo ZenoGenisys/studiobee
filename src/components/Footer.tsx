@@ -22,7 +22,7 @@ const Footer = () => {
     return (
         <Box
             sx={{
-                marginTop: "150px",
+                marginTop: { lg: "150px", md: "50px", xs: "30px" },
                 height: "196px",
                 backgroundColor: "rgba(153, 224, 164, 0.73)",
             }}
