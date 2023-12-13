@@ -8,8 +8,7 @@ import Grid from "@mui/material/Grid";
 import Headroom from "react-headroom";
 import { Images } from "../asset";
 import "../css/Header.css";
-import Drawer from "react-modern-drawer";
-import "react-modern-drawer/dist/index.css";
+import Drawer from '@mui/material/Drawer';
 import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 
@@ -22,15 +21,17 @@ const HeaderList = [
 
 interface HeaderItemProps {
   data: { name: string; url: string; isInActive?: boolean };
+  handleClick?: () => void;
 }
 
-const HeaderItem = ({ data }: HeaderItemProps) => {
+const HeaderItem = ({ data, handleClick }: HeaderItemProps) => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const onClick = useCallback(() => {
+    handleClick?.();
     navigate(data.url);
-  }, [data, navigate]);
+  }, [data.url, handleClick, navigate]);
 
   const activeTab = useMemo(() => {
     return location.pathname;
@@ -55,9 +56,9 @@ const HeaderItem = ({ data }: HeaderItemProps) => {
 
 const Header = () => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const toggleDrawer = () => {
+  const toggleDrawer = useCallback(() => {
     setIsOpen((prevState) => !prevState);
-  };
+  }, []);
 
   return (
     <Headroom>
@@ -101,12 +102,14 @@ const Header = () => {
                 <Drawer
                   open={isOpen}
                   onClose={toggleDrawer}
-                  direction="right"
-                  className="bla bla bla drawer-styles"
+                  anchor="right"
                 >
-                  {HeaderList.map((item) => (
-                    <HeaderItem key={item.name} data={item} />
-                  ))}
+                  <Box className="drawer-styles">
+                    {HeaderList.map((item) => (
+                      <HeaderItem key={item.name} data={item} handleClick={toggleDrawer} />
+                    ))}
+                  </Box>
+
                 </Drawer>
               </Box>
             </Box>
