@@ -20,7 +20,14 @@
 
 .drawer-styles {
     background-color: #99e0a4 !important;
-    padding: 20px 40px;
+    padding: 20px 20px;
+    height: 100%;
+    width: 250px;
+    background-color: #99e0a4;
+
+    p{
+        padding-bottom: 10px;
+    }
 }
 
 .desktop-hide {
