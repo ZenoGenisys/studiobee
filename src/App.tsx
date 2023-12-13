@@ -5,13 +5,16 @@ import { ThemeProvider } from "@mui/material/styles";
 import { theme } from './theme';
 import { Provider } from './context';
 import { Responsive } from './context/ResponsiveContext';
+import { SlideShow } from './context/SlideShowContext';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <Responsive>
         <Provider>
-          <Router />
+          <SlideShow>
+            <Router />
+          </SlideShow>
         </Provider>
       </Responsive>
     </ThemeProvider>

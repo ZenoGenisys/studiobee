@@ -62,7 +62,7 @@ const Router = () => {
                         </HeaderFooter>
                     }
                 />
-                <Route path={`${RouterPath.slideShow}/:type/:index`} element={<ImageSlideShow />} />
+                <Route path={`${RouterPath.slideShow}`} element={<HeaderFooter><ImageSlideShow /></HeaderFooter>} />
             </Routes>
         </BrowserRouter >
     );

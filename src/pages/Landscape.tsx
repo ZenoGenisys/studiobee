@@ -1,20 +1,32 @@
 import GridComponent from "../components/GridComponent";
 import Grid from "@mui/material/Grid";
 import { useProvider } from "../context";
-import { RouterPath, SliderType } from "../router/RouterPath";
 import { useCallback } from "react";
-import { useNavigate } from "react-router-dom";
-
+import { useSlideShow } from "../context/SlideShowContext";
+import { mapToSlideShowImages } from "../utils";
+import { useNavigate } from "react-router";
+import { RouterPath } from "../router/RouterPath";
 
 const Landscape = () => {
     const { landscape } = useProvider();
+    const { setSlideShowImage, setStartIndex } = useSlideShow();
     const navigate = useNavigate();
 
     const handleSlideShow = useCallback(
         (index: number) => {
-            navigate(`${RouterPath.slideShow}/${SliderType.landscape}/${index}`);
+            const result = mapToSlideShowImages(
+                [
+                    ...(landscape?.["rowOne"] ?? []),
+                    ...(landscape?.["rowTwo"] ?? []),
+                    ...(landscape?.["rowThree"] ?? []),
+                ] ?? [],
+                index
+            );
+            setSlideShowImage(result?.imageList);
+            setStartIndex(result?.index);
+            navigate(RouterPath.slideShow);
         },
-        [navigate]
+        [landscape, navigate, setSlideShowImage, setStartIndex]
     );
 
     return (
@@ -22,18 +34,34 @@ const Landscape = () => {
             <Grid container spacing={1} className="d-flex">
                 <Grid item xs={1}></Grid>
                 <Grid item xs={3.33}>
-                    <GridComponent data={landscape?.['rowOne'] ?? []} handleSlideShow={handleSlideShow} />
+                    <GridComponent
+                        data={landscape?.["rowOne"] ?? []}
+                        handleSlideShow={handleSlideShow}
+                    />
                 </Grid>
                 <Grid item xs={3.33}>
-                    <GridComponent data={landscape?.['rowTwo'] ?? []} handleSlideShow={(index: number) => { handleSlideShow(index + (landscape?.['rowOne'] ?? [])?.length); }} />
+                    <GridComponent
+                        data={landscape?.["rowTwo"] ?? []}
+                        handleSlideShow={(index: number) => {
+                            handleSlideShow(index + (landscape?.["rowOne"] ?? [])?.length);
+                        }}
+                    />
                 </Grid>
                 <Grid item xs={3.33}>
-                    <GridComponent data={landscape?.['rowThree'] ?? []} handleSlideShow={(index: number) => { handleSlideShow(index + ((landscape?.['rowOne'] ?? [])?.length) + (landscape?.['rowTwo'] ?? [])?.length); }} />
+                    <GridComponent
+                        data={landscape?.["rowThree"] ?? []}
+                        handleSlideShow={(index: number) => {
+                            handleSlideShow(
+                                index +
+                                (landscape?.["rowOne"] ?? [])?.length +
+                                (landscape?.["rowTwo"] ?? [])?.length
+                            );
+                        }}
+                    />
                 </Grid>
                 <Grid item xs={1}></Grid>
             </Grid>
         </>
-
     );
 };
 

@@ -2,18 +2,24 @@ import { Grid } from "@mui/material";
 import { useProvider } from "../context";
 import ImageComponent from "../components/ImageComponent";
 import { useCallback } from "react";
-import { useNavigate } from "react-router-dom";
-import { RouterPath, SliderType } from "../router/RouterPath";
+import { useSlideShow } from "../context/SlideShowContext";
+import { mapToSlideShowImages } from "../utils";
+import { useNavigate } from "react-router";
+import { RouterPath } from "../router/RouterPath";
 
 const Automotive = () => {
     const { automotive } = useProvider();
+    const { setSlideShowImage, setStartIndex } = useSlideShow();
     const navigate = useNavigate();
 
     const handleSlideShow = useCallback(
         (index: number) => {
-            navigate(`${RouterPath.slideShow}/${SliderType.automotive}/${index}`);
+            const result = mapToSlideShowImages(automotive ?? [], index)
+            setSlideShowImage(result?.imageList);
+            setStartIndex(result?.index);
+            navigate(RouterPath.slideShow);
         },
-        [navigate]
+        [automotive, navigate, setSlideShowImage, setStartIndex]
     );
 
     return (
