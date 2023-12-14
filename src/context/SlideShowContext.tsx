@@ -46,6 +46,14 @@ export const SlideShow = ({ children }: SlideShowContextType) => {
         setSlideShowImage(data?.imageList);
     }, [automotive]);
 
+    useEffect(() => {
+        if (isSlideShow) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'visible';
+        }
+    }, [isSlideShow]);
+
     const value = useMemo(() => {
         return {
             slideShowImage,
