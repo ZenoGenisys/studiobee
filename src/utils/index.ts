@@ -7,7 +7,8 @@ export const mapToSlideShowImages = (data: DataProps[], selectedIndex: number): 
     data.forEach((item, index) => {
         if (!item.isVideo) {
             result.push({
-                url: item?.image
+                url: item?.image,
+                title: "Studiobee"
             });
         } else {
             if (selectedIndex > index) {
