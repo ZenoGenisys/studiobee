@@ -7,7 +7,6 @@ import Events from "../pages/Events";
 import EventsDetails from "../pages/EventsDetails";
 import Footer from "../components/Footer";
 import Box from "@mui/material/Box";
-import ImageSlideShow from "../pages/ImageSlideShow";
 import { ReactNode } from "react";
 
 interface HeaderFooterProps {
@@ -62,7 +61,6 @@ const Router = () => {
                         </HeaderFooter>
                     }
                 />
-                <Route path={`${RouterPath.slideShow}`} element={<HeaderFooter><ImageSlideShow /></HeaderFooter>} />
             </Routes>
         </BrowserRouter >
     );

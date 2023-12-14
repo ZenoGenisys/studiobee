@@ -13,7 +13,7 @@ import { useSlideShow } from "../context/SlideShowContext";
 
 const EventsDetails = () => {
     const { eventsDetails, events } = useProvider();
-    const { setSlideShowImage, setStartIndex } = useSlideShow();
+    const { setSlideShowImage, setStartIndex, setIsSlideShow } = useSlideShow();
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -35,7 +35,7 @@ const EventsDetails = () => {
         if (eventsDetails && eventsId && eventsDetails?.[eventsId] === undefined) {
             navigate(RouterPath.events);
         }
-    }, [eventsDetails, eventsId, navigate])
+    }, [eventsDetails, eventsId, navigate]);
 
     const subtitle = useMemo(() => {
         if (events) {
@@ -49,8 +49,8 @@ const EventsDetails = () => {
 
     const { next, prev } = useMemo(() => {
         if (events) {
-            let next = undefined;
-            let prev = undefined;
+            let next: DataProps | undefined = undefined;
+            let prev: DataProps | undefined = undefined;
             events.forEach((item, index) => {
                 if (item?.detailsKey === eventsId) {
                     if (index === 0) {
@@ -89,12 +89,12 @@ const EventsDetails = () => {
 
     const handleSlideShow = useCallback(
         (index: number) => {
-            const result = mapToSlideShowImages(eventsData ?? [], index)
+            const result = mapToSlideShowImages(eventsData ?? [], index);
             setSlideShowImage(result?.imageList);
             setStartIndex(result?.index);
-            navigate(RouterPath.slideShow);
+            setIsSlideShow(true);
         },
-        [setSlideShowImage, eventsData, setStartIndex, navigate]
+        [eventsData, setSlideShowImage, setStartIndex, setIsSlideShow]
     );
 
     return (

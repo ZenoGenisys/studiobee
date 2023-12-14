@@ -1,46 +1,55 @@
 .pr-40 {
-    padding-right: 40px;
+  padding-right: 40px;
 }
 
 .active {
-    color: #000;
-    font-weight: 700 !important;
+  color: #000;
+  font-weight: 700 !important;
 }
 
 .in-active {
-    color: #fff;
+  color: #fff;
 }
 
 .next-prev {
-    font-weight: 600 !important;
+  font-weight: 600 !important;
 }
 
 @media only screen and (max-width: 767px) {
-    .footer-width {
-        width: 150px;
-    }
+  .footer-width {
+    width: 150px;
+  }
 
-    .footer-text {
-        font-size: 12px !important;
-    }
+  .footer-text {
+    font-size: 12px !important;
+  }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-    .footer-width {
-        width: 170px;
-    }
+  .footer-width {
+    width: 170px;
+  }
 
-    .footer-text {
-        font-size: 14px !important;
-    }
+  .footer-text {
+    font-size: 14px !important;
+  }
 }
 
 @media only screen and (min-width: 1025px) {
-    .footer-width {
-        width: 281px;
-    }
+  .footer-width {
+    width: 281px;
+  }
 
-    .footer-text {
-        font-size: 18px !important;
-    }
+  .footer-text {
+    font-size: 18px !important;
+  }
+}
+
+.lb-header {
+  background: #99e0a4 !important;
+  box-shadow: 0px 1px 5px 0px #99e0a4 !important;
+}
+
+.lb-canvas {
+  background-color: #fff;
 }

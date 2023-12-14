@@ -4,22 +4,19 @@ import ImageComponent from "../components/ImageComponent";
 import { useCallback } from "react";
 import { useSlideShow } from "../context/SlideShowContext";
 import { mapToSlideShowImages } from "../utils";
-import { useNavigate } from "react-router";
-import { RouterPath } from "../router/RouterPath";
 
 const Automotive = () => {
     const { automotive } = useProvider();
-    const { setSlideShowImage, setStartIndex } = useSlideShow();
-    const navigate = useNavigate();
+    const { setSlideShowImage, setStartIndex, setIsSlideShow } = useSlideShow();
 
     const handleSlideShow = useCallback(
         (index: number) => {
             const result = mapToSlideShowImages(automotive ?? [], index)
             setSlideShowImage(result?.imageList);
             setStartIndex(result?.index);
-            navigate(RouterPath.slideShow);
+            setIsSlideShow(true);
         },
-        [automotive, navigate, setSlideShowImage, setStartIndex]
+        [automotive, setIsSlideShow, setSlideShowImage, setStartIndex]
     );
 
     return (
