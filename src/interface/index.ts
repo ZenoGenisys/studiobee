@@ -12,3 +12,8 @@ export interface DataProps {
     cols?: number;
     rows?: number;
 }
+
+export interface SlideShowProps {
+    url: string;
+    title?: string;
+}

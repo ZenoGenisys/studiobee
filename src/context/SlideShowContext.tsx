@@ -7,15 +7,17 @@ import {
     useMemo,
     useState,
 } from "react";
-import { ReactImageGalleryItem } from "react-image-gallery";
 import { mapToSlideShowImages } from "../utils";
 import { useProvider } from ".";
+import { SlideShowProps } from "../interface";
 
 interface ProviderType {
-    slideShowImage: ReactImageGalleryItem[];
-    setSlideShowImage: Dispatch<ReactImageGalleryItem[]>;
+    slideShowImage: SlideShowProps[];
+    setSlideShowImage: Dispatch<SlideShowProps[]>;
     startIndex: number;
     setStartIndex: Dispatch<number>;
+    isSlideShow: boolean;
+    setIsSlideShow: Dispatch<boolean>;
 }
 
 interface SlideShowContextType {
@@ -27,14 +29,17 @@ const SlideShowContext = createContext({
     setSlideShowImage: () => [],
     startIndex: 0,
     setStartIndex: () => 1,
+    isSlideShow: true,
+    setIsSlideShow: () => false
 } as ProviderType);
 
 export const SlideShow = ({ children }: SlideShowContextType) => {
     const { automotive } = useProvider();
-    const [slideShowImage, setSlideShowImage] = useState<ReactImageGalleryItem[]>(
+    const [slideShowImage, setSlideShowImage] = useState<SlideShowProps[]>(
         []
     );
     const [startIndex, setStartIndex] = useState<number>(0);
+    const [isSlideShow, setIsSlideShow] = useState<boolean>(false);
 
     useEffect(() => {
         const data = mapToSlideShowImages(automotive ?? [], 0);
@@ -47,8 +52,10 @@ export const SlideShow = ({ children }: SlideShowContextType) => {
             setSlideShowImage,
             startIndex,
             setStartIndex,
+            isSlideShow,
+            setIsSlideShow
         };
-    }, [slideShowImage, startIndex]);
+    }, [isSlideShow, slideShowImage, startIndex]);
 
     return (
         <SlideShowContext.Provider value={value}>
