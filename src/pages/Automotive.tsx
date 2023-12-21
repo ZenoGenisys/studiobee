@@ -25,7 +25,6 @@ const Automotive = () => {
             <Grid item xs={11} lg={10} md={10}>
                 <ImageComponent
                     data={automotive ?? []}
-                    isMobileFullScreen={true}
                     handleSlideShow={handleSlideShow}
                 />
             </Grid>
