@@ -8,6 +8,7 @@ import EventsDetails from "../pages/EventsDetails";
 import Footer from "../components/Footer";
 import Box from "@mui/material/Box";
 import { ReactNode } from "react";
+import ImageSlideShow from "../components/ImageSlideShow";
 
 interface HeaderFooterProps {
     children: ReactNode;
@@ -17,6 +18,7 @@ const HeaderFooter = ({ children }: HeaderFooterProps) => {
     return (
         <>
             <Header />
+            <ImageSlideShow />
             <Box sx={{ marginTop: { lg: "50px", md: "50px", xs: "30px" } }}>
                 {children}
             </Box>
@@ -62,7 +64,7 @@ const Router = () => {
                     }
                 />
             </Routes>
-        </BrowserRouter >
+        </BrowserRouter>
     );
 };
 
