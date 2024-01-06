@@ -6,7 +6,6 @@ import { theme } from './theme';
 import { Provider } from './context';
 import { Responsive } from './context/ResponsiveContext';
 import { SlideShow } from './context/SlideShowContext';
-import ImageSlideShow from './components/ImageSlideShow';
 
 function App() {
   return (
@@ -14,7 +13,6 @@ function App() {
       <Responsive>
         <Provider>
           <SlideShow>
-            <ImageSlideShow />
             <Router />
           </SlideShow>
         </Provider>
