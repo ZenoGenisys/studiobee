@@ -601,14 +601,14 @@
         "grid": 5
       },
       {
-        "image": "https://studiobee.s3.ap-south-1.amazonaws.com/shruthi/Shruthi-3-1.jpg",
-        "alt": "wedding",
-        "grid": 5
-      },
-      {
         "image": "https://studiobee.s3.ap-south-1.amazonaws.com/shruthi/Shruthi-3-2.jpg",
         "alt": "wedding",
         "grid": 7
+      },
+      {
+        "image": "https://studiobee.s3.ap-south-1.amazonaws.com/shruthi/Shruthi-3-1.jpg",
+        "alt": "wedding",
+        "grid": 5
       },
       {
         "image": "https://studiobee.s3.ap-south-1.amazonaws.com/shruthi/Shruthi-4-1.jpg",
